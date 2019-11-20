@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="list-dish">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `list-dish`
+     * list dish element for Menu restaurant
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ListDish extends Polymer.Element {
+      static get is() { return 'list-dish'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'list-dish'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ListDish.is, ListDish);
+  </script>
+</dom-module>
