@@ -1,4 +1,10 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
+
 
 <dom-module id="list-dish">
   <template>
@@ -6,8 +12,66 @@
       :host {
         display: block;
       }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      paper-card {
+        max-width: 500px;
+      }
+
+      .cafe-header {
+        @apply --paper-font-headline;
+      }
+
+      .cafe-light {
+        color: var(--paper-grey-600);
+      }
+
+      .cafe-location {
+        float: right;
+        font-size: 15px;
+        vertical-align: middle;
+      }
+
+      .cafe-reserve {
+        color: var(--google-blue-500);
+      }
+
+      iron-icon.star {
+        --iron-icon-width: 16px;
+        --iron-icon-height: 16px;
+        color: var(--paper-amber-500);
+      }
+
+      iron-icon.star:last-of-type {
+        color: var(--paper-grey-500);
+      }
     </style>
-    <h2>Hello [[prop1]]!</h2>
+
+    <paper-card
+      image="https://images.pexels.com/photos/302899/pexels-photo-302899.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+      <div class="card-content">
+        <div class="cafe-header">Latte
+          <div class="cafe-location cafe-light">
+            <iron-icon icon="communication:location-on"></iron-icon>
+            <span>20 cal</span>
+          </div>
+        </div>
+        <rating-component rate="[[dish.rate]]"></rating-component>
+        <p>$25.00 MXN</p>
+        <p class="cafe-light">Latte & latte</p>
+      </div>
+      <div class="card-actions">
+        <div class="horizontal">
+          <paper-button class="info" on-click="__updateDish">Modificar</paper-button>
+          <paper-button class="error" on-click="__deleteDish">Eliminar</paper-button>
+        </div>
+      </div>
+    </paper-card>
   </template>
 
   <script>
@@ -20,7 +84,9 @@
      * @demo demo/index.html
      */
     class ListDish extends Polymer.Element {
-      static get is() { return 'list-dish'; }
+      static get is() {
+        return 'list-dish';
+      }
       static get properties() {
         return {
           prop1: {
